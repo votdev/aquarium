@@ -1,10 +1,21 @@
-from datetime import datetime
+# project aquarium's backend
+# Copyright (C) 2021 SUSE, LLC.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
 from pathlib import Path
 from pyfakefs.fake_filesystem_unittest \
     import TestCase  # pyright: reportMissingTypeStubs=false
 
-from gravel.controllers.config \
-    import Config, DeploymentStage
+from gravel.controllers.config import Config
 
 
 class TestConfig(TestCase):
@@ -14,12 +25,7 @@ class TestConfig(TestCase):
 
     def test_config_version(self):
         config = Config()
-        assert config.config.version == 3
-
-    def test_deployment_state(self):
-        ds = Config().deployment_state
-        assert ds.stage == DeploymentStage.none
-        assert ds.last_modified < datetime.now()
+        assert config.config.version == 1
 
     def test_config_options(self):
         opts = Config().options
@@ -38,6 +44,6 @@ class TestConfig(TestCase):
         # dirname(config.json) != dirname(storage.json)
         config = Config(path='bar')
         config.options.service_state_path = Path('baz')
-        config._saveConfig(config.config)
+        config._saveConfig(config.config)  # pyright: reportPrivateUsage=false
         config = Config(path='bar')
         assert config.options.service_state_path == Path('baz')
