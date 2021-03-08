@@ -68,7 +68,8 @@ export class StatusRouteGuardService implements CanActivate, CanActivateChild {
               [
                 '/installer/welcome',
                 '/installer/install-mode',
-                '/installer/create/bootstrap'
+                '/installer/create/bootstrap',
+                '/installer/join/announce'
               ].includes(state.url)
             ) {
               result = true;

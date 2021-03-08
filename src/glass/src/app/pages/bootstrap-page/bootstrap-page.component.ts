@@ -49,10 +49,9 @@ export class BootstrapPageComponent implements OnInit {
     });
   }
 
-  startBootstrap(): void {
+  doBootstrap(): void {
     this.visible = false;
     this.blockUI.start(translate(TEXT('Please wait, bootstrapping will be started ...')));
-
     this.bootstrapService.start().subscribe({
       next: (basicReplay: BootstrapBasicReply) => {
         if (basicReplay.success) {

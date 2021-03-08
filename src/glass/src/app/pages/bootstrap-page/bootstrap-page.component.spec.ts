@@ -41,7 +41,7 @@ describe('BootstrapPageComponent', () => {
 
   it('should start bootstrapping', () => {
     spyOn(bootstrapService, 'start').and.returnValue(of({ success: true }));
-    component.startBootstrap();
+    component.doBootstrap();
     expect(bootstrapService.start).toHaveBeenCalled();
     expect(component.visible).toBeFalsy();
     expect(component.blockUI.isActive).toBeTruthy();
@@ -50,7 +50,7 @@ describe('BootstrapPageComponent', () => {
   it('should fail start bootstrapping', () => {
     spyOn(bootstrapService, 'start').and.returnValue(of({ success: false }));
     spyOn(notificationService, 'show').and.stub();
-    component.startBootstrap();
+    component.doBootstrap();
     expect(bootstrapService.start).toHaveBeenCalled();
     expect(component.visible).toBeTruthy();
     expect(component.blockUI.isActive).toBeFalsy();
@@ -58,7 +58,7 @@ describe('BootstrapPageComponent', () => {
   });
 
   it('should error bootstrapping', () => {
-    component.startBootstrap();
+    component.doBootstrap();
     httpTestingController.expectOne('api/bootstrap/status');
     httpTestingController
       .expectOne('api/bootstrap/start')

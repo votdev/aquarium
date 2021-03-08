@@ -1,0 +1,69 @@
+<div class="glass-announce-page"
+     fxLayout="column"
+     fxLayoutAlign="center center">
+  <div class="glass-announce-page-background"></div>
+  <div class="glass-announce-page-content"
+       fxLayout="column"
+       fxLayoutAlign="center center">
+    <mat-card *ngIf="visible">
+      <mat-card-header>
+        <mat-card-title translate>Join existing cluster</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="formGroup"
+              novalidate
+              fxLayout="column"
+              fxLayoutAlign="none">
+          <mat-form-field [formGroup]="formGroup"
+                          color="accent"
+                          fxFlex>
+            <mat-label>Address</mat-label>
+            <input matInput
+                   type="text"
+                   formControlName="addr">
+            <mat-hint translate>The IP address or FQDN of the main node.</mat-hint>
+            <mat-error *ngIf="formGroup.invalid">
+              <span *ngIf="formGroup.hasError('required', 'addr')"
+                    translate>
+                This field is required.
+              </span>
+              <span *ngIf="formGroup.hasError('addr', 'addr')"
+                    translate>
+                This field must be an IP address or FQDN.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field [formGroup]="formGroup"
+                          color="accent"
+                          fxFlex>
+            <mat-label>Token</mat-label>
+            <glass-token-input formControlName="token"></glass-token-input>
+            <mat-hint translate>The security token to authorize at the main node.</mat-hint>
+            <mat-error *ngIf="formGroup.invalid">
+              <span *ngIf="formGroup.hasError('required', 'token')"
+                    translate>
+                This field is required.
+              </span>
+              <span *ngIf="formGroup.hasError('pattern', 'token')"
+                    translate>
+                The token is invalid.
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button
+                matTooltip="Back"
+                routerLink="/installer/install-mode">
+          <mat-icon svgIcon="mdi:arrow-left"></mat-icon>
+        </button>
+        <glass-submit-button [form]="formGroup"
+                             (click)="doJoin()"
+                             cdkFocusInitial>
+          <span translate>Join</span>
+        </glass-submit-button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
