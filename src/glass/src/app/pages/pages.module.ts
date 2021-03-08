@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CoreModule } from '~/app/core/core.module';
 import { MaterialModule } from '~/app/material.modules';
+import { AnnouncePageComponent } from '~/app/pages/announce-page/announce-page.component';
 import { BootstrapPageComponent } from '~/app/pages/bootstrap-page/bootstrap-page.component';
 import { DashboardPageComponent } from '~/app/pages/dashboard-page/dashboard-page.component';
 import { CephfsModalComponent } from '~/app/pages/deployment-page/cephfs-modal/cephfs-modal.component';
@@ -23,7 +24,8 @@ import { SharedModule } from '~/app/shared/shared.module';
     InstallModePageComponent,
     WelcomePageComponent,
     NotFoundPageComponent,
-    CephfsModalComponent
+    CephfsModalComponent,
+    AnnouncePageComponent
   ],
   imports: [
     CommonModule,

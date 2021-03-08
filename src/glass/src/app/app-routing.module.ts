@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlankLayoutComponent } from '~/app/core/layouts/blank-layout/blank-layout.component';
 import { InstallerLayoutComponent } from '~/app/core/layouts/installer-layout/installer-layout.component';
 import { MainLayoutComponent } from '~/app/core/layouts/main-layout/main-layout.component';
+import { AnnouncePageComponent } from '~/app/pages/announce-page/announce-page.component';
 import { BootstrapPageComponent } from '~/app/pages/bootstrap-page/bootstrap-page.component';
 import { DashboardPageComponent } from '~/app/pages/dashboard-page/dashboard-page.component';
 import { DeploymentPageComponent } from '~/app/pages/deployment-page/deployment-page.component';
@@ -32,6 +33,13 @@ const routes: Routes = [
         path: 'create',
         children: [
           { path: 'bootstrap', component: BootstrapPageComponent },
+          { path: 'deployment', component: DeploymentPageComponent }
+        ]
+      },
+      {
+        path: 'join',
+        children: [
+          { path: 'announce', component: AnnouncePageComponent },
           { path: 'deployment', component: DeploymentPageComponent }
         ]
       }
